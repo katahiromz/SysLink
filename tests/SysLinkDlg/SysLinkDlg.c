@@ -1,9 +1,6 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <commctrl.h>
-#ifdef WONVER
-    #include "../../SysLink.h"
-#endif
 
 BOOL OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 {
