@@ -18,7 +18,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 # SysLink.dll
 add_library(SysLink SHARED syslink.c dllmain.c)
-target_compile_definitions(SysLink PRIVATE -DWONVER=0x0500) # 2k3
+target_compile_definitions(SysLink PRIVATE -DWONVER=0x0500) # 2k
 target_include_directories(SysLink PRIVATE wine)
 set_target_properties(SysLink PROPERTIES PREFIX "")
 
