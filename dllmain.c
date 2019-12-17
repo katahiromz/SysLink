@@ -119,20 +119,22 @@ BOOL IsSysLinkRegistered(HINSTANCE hinstDLL)
 BOOL WINAPI
 DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
-    static BOOL s_bRegd = FALSE;
+    static BOOL s_bDoWorkaround;
     switch (fdwReason)
     {
     case DLL_PROCESS_ATTACH:
         COMCTL32_RefreshSysColors();
-        s_bRegd = IsSysLinkRegistered(hinstDLL);
-        if (!s_bRegd)
+        s_bDoWorkaround = !IsSysLinkRegistered(hinstDLL);
+        if (s_bDoWorkaround)
         {
             SYSLINK_Register();
         }
         break;
     case DLL_PROCESS_DETACH:
-        if (s_bRegd)
+        if (s_bDoWorkaround)
+        {
             SYSLINK_Unregister();
+        }
         break;
     }
     return TRUE;
